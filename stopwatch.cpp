@@ -11,16 +11,21 @@
  *-----------------------------------------------------------------------------
 */
 #include "stopwatch.h"
-
+clock_t start, end = 0;
 void start_stopwatch()
 {
-
+  start = clock();
+  end = 0;
 }
 void stop_stopwatch()
 {
-
+  end = clock();
 }
 float elapsed_time()
 {
-  return 0;
+  if(end == 0)
+  {
+    stop_stopwatch();
+  }
+  return double(end - start) / CLOCKS_PER_SEC *1000;
 }
